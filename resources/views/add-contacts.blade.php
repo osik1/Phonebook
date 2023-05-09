@@ -11,20 +11,22 @@
 <body>
     <div class="page-wrapper">
         <div class="illustration">
-            <img src="{{asset('images/addfiles.png')}}" alt="">
+            <img src="{{asset('images/addffiles.png')}}" alt="">
         </div>
         <div class="app-page">
             <div class="app-content">
                 <div class="logobox">
+                    <a href="{{url('/')}}">
                     <img src="{{asset('images/logo.png')}}" alt="logo">
                     <span>Phone Book App</span>
+                    </a>
                 </div>
                 
                  <div class="form-box">
                     <div class="form-heading">
                         <h1>Add Contacts</h1>
                     </div>
-                    <form action="" method="post">
+                    <form action="{{url('store-contact')}}" method="POST">
                     @csrf
                         <input type="hidden" name="id" value =""> 
                         <div>

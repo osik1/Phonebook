@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ContactsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,3 +21,6 @@ Route::get('/', function () {
 Route::get('add-contact', function () {
     return view('add-contacts');
 })->name('add-contact');
+
+
+Route::post('save-contact', [ContactsController::class, 'store'])->name('store-contact');
