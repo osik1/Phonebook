@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Contact;
 use Illuminate\Http\Request;
+use Spatie\QueryBuilder\QueryBuilder;
+
 
 class ContactsController extends Controller
 {
@@ -13,7 +15,10 @@ class ContactsController extends Controller
     public function index()
     {
         //
-
+        $contact = QueryBuilder::for(Contact::class)
+        ->allowedFilters(['first_name','last_name'])
+        ->paginate(10);
+        return view('phonebook.page')->with('contact', $contact);
     }
 
     /**
@@ -34,12 +39,10 @@ class ContactsController extends Controller
         $request->validate([
             'first_name' => 'required|regex:/^[a-zA-Z]+$/u|max:55',
             'last_name' => 'required|regex:/^[a-zA-Z]+$/u|max:55',
-            'phone' => 'required|min:8',
+            'phone' => 'required|min:10',
         ]);
-
         $contact = Contact::create($input);
-        return redirect("phonebook")->with('message', 'Contact saved!!');
-
+        return redirect("/")->with('success', 'Contact saved!!');
     }
 
     /**
@@ -61,16 +64,33 @@ class ContactsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Contact $contact)
+    public function update(Request $request,  $id)
     {
-        //
+        //find the contact  with the id you want to update
+        $contact = Contact::find($id);
+        // validate the input
+        $input = $request->all();
+        $request->validate([
+            'first_name' => 'required|regex:/^[a-zA-Z]+$/u|max:55',
+            'last_name' => 'required|regex:/^[a-zA-Z]+$/u|max:55',
+            'phone' => 'required|min:10',
+        ]);
+        //update the old records with the current  input
+        $contact->first_name = $input['first_name'];
+        $contact->last_name =  $input['last_name'];
+        $contact->phone =  $input['phone'];
+        $contact->save();
+        return redirect("/")->with('success', 'Contact updeated');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Contact $contact)
+    public function destroy($id)
     {
-        //
+        //find the id from the contact table
+        $contact = Contact::find($id);
+        $contact->delete();
+        return redirect("/")->with('success', 'Contact deleted');
     }
 }

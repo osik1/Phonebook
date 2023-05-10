@@ -26,13 +26,13 @@
                     <div class="form-heading">
                         <h1>Add Contacts</h1>
                     </div>
-                    <form action="{{url('store-contact')}}" method="POST">
+                    <form action="{{route('store.contact')}}" method="POST">
                     @csrf
                         <input type="hidden" name="id" value =""> 
                         <div>
                             <label for="">First Name</label>
                             <input type="text" name="first_name" value ="{{old('first_name')}}" class="text-input" placeholder="Enter your first name">
-                            @if ($errors->has('name'))
+                            @if ($errors->has('first_name'))
                                 <span class="text-danger">{{ $errors->first('first_name') }}</span>
                             @endif
                         </div>

@@ -16,47 +16,57 @@
         <div class="app-page">
             <div class="app-content">
                 <div class="logobox">
+                    <a href="{{url('/')}}">
                     <img src="{{asset('images/logo.png')}}" alt="logo">
                     <span>Phone Book App</span>
+                    </a>
                 </div>
                 <div class="heading">
                     <h1>Contacts</h1>
                     <a href="{{url('add-contact')}}"><button class="btn">+ Add Contact</button></a>
                 </div>
+                <!-- search form -->
+                <form action="{{ route('search') }}" method="GET" id="search-form">
                 <div class="search-form">
-                    <input type="search" name="" id="" class="text-input" placeholder="Search for contact by last name...">
+                    <input type="search" name="query" id="" class="text-input" placeholder="Search for contact by last name...">
                 </div>
+                </form>
+                <!-- //alert message  -->
+                @if(session('success'))
+                    <br>
+                    <div class="alert alert-success" role="alert">
+                        {{session('success')}}
+                    </div>
+                    <br>
+                @endif 
                 <div class="contact-list">
-                    <div class="contact">
-                        <div class="details">
-                            <div class="name">
-                                <p>Eric Eliot</p>
+                @if (isset($contact))
+                    @foreach ($contact as $contacts)
+                        <div class="contact">
+                            <div class="details">
+                                <div class="name">
+                                    <p>{{$contacts->first_name}} {{$contacts->last_name}}</p>
+                                </div>
+                                <div class="number">
+                                <p>{{$contacts->phone}}</p>
+                                </div>
                             </div>
-                            <div class="number">
-                            <p>222-555-6575</p>
-                            </div>
-                        </div>
-                        <div class="delete-box">
-                            <a href=""><img src="{{asset('images/delete.png')}}" alt=""></a>
-                        </div>
-                    </div>
-                    <div class="contact">
-                        <div class="details">
-                            <div class="name">
-                                <p>Steve Jobs</p>
-                            </div>
-                            <div class="number">
-                            <p>220-454-6754</p> 
+                            <div class="delete-box">
+                                <a href="{{url('del-contact/$contacts->id')}}"><img src="{{asset('images/delete.png')}}" alt=""></a>
                             </div>
                         </div>
-                        <div class="delete-box">
-                            <a href=""><img src="{{asset('images/delete.png')}}" alt=""></a>
-                        </div>
-                    </div>
+                    @endforeach
+                   @endif
                 </div>
             </div>
             
         </div>
     </div>
+    <script>
+    document.getElementById('search-form').addEventListener('submit', function(event) {
+        event.preventDefault(); // prevent the form from submitting normally
+        window.location.href = "{{ route('search') }}?filter[last_name]=" + encodeURIComponent(document.getElementsByName('query')[0].value);
+    });
+</script>
 </body>
 </html>
