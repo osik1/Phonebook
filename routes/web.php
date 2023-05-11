@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ContactsController;
 use Illuminate\Support\Facades\Route;
+use Spatie\QueryBuilder\QueryBuilder;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,13 +15,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('phonebook');
-});
+// Route::get('/', function () {
+//     return view('phonebook');
+// });
+Route::get('/', [ContactsController::class, 'index']);
 
-Route::get('phonebook', function () {
-    return view('phonebook');
-})->name('phonebook.page');
 
 Route::get('add-contact', function () {
     return view('add-contacts');
@@ -29,4 +28,4 @@ Route::get('add-contact', function () {
 
 Route::get('contacts', [ContactsController::class, 'index'])->name('search');
 Route::post('save-contact', [ContactsController::class, 'store'])->name('store.contact');
-Route::delete('del-contact/{id}', [ContactsController::class, 'destroy']);
+Route::get('del-contact/{id}', [ContactsController::class, 'destroy']);

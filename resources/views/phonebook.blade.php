@@ -52,7 +52,7 @@
                                 </div>
                             </div>
                             <div class="delete-box">
-                                <a href="{{url('del-contact/$contacts->id')}}"><img src="{{asset('images/delete.png')}}" alt=""></a>
+                                <a href="{{url('del-contact/'.$contacts->id)}}"><img src="{{asset('images/delete.png')}}" alt=""></a>
                             </div>
                         </div>
                     @endforeach

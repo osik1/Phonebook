@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Contact;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\View;
 use Spatie\QueryBuilder\QueryBuilder;
 
 
@@ -17,8 +18,8 @@ class ContactsController extends Controller
         //
         $contact = QueryBuilder::for(Contact::class)
         ->allowedFilters(['first_name','last_name'])
-        ->paginate(10);
-        return view('phonebook.page')->with('contact', $contact);
+        ->get();
+        return View::make('phonebook', compact('contact'));
     }
 
     /**
