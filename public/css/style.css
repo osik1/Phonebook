@@ -35,11 +35,12 @@ input[type=text],[type=search],[type=password],[type=tel], textarea {-webkit-tra
 .page-wrapper .app-page .app-content .heading h1{flex: 1;}
 .page-wrapper .app-page .app-content .heading .btn{position: relative;bottom: -10px;}
 .page-wrapper .app-page .app-content .search-form{box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2)}
-.page-wrapper .app-page .app-content .contact-list{background: #fff;margin-top: 20px;border: 1px solid #d8d8db;border-radius: 5px;box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2)}
+.page-wrapper .app-page .app-content .contact-list{background: #fff;margin-top: 20px;border: 1px solid #d8d8db;border-radius: 5px;box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2),}
 .page-wrapper .app-page .app-content .contact-list .contact{border-bottom: 1px solid #d8d8db;display: flex;}
 .page-wrapper .app-page .app-content .contact-list .contact .details{flex: 1;padding: 20px;}
 .page-wrapper .app-page .app-content .contact-list .contact .details .name p{font-size: 20px;font-weight: 600;}
 .page-wrapper .app-page .app-content .contact-list .contact .details .number p{font-size: 15px;color: #bbb;font-weight: 600;}
+.page-wrapper .app-page .app-content .contact-list .contact .details .name a:hover{color: #347bf6;}
 .page-wrapper .app-page .app-content .contact-list .contact .delete-box{padding: 20px;}
 .page-wrapper .app-page .app-content .contact-list .contact .delete-box img{width: 50px;position: relative;bottom: -5px;background: red;padding: 8px 8px;border-radius: 10px;}
 .page-wrapper .app-page .app-content .contact-list .contact .delete-box img:hover{background: rgb(248, 54, 54);}

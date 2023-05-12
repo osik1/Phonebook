@@ -1,0 +1,16 @@
+@media(max-width:760px){
+.page-wrapper .illustration{display: none;}
+}
+
+@media(max-width:400px){
+.page-wrapper .app-page .app-content .logobox span{font-size: 30px;font-weight: 600;position: relative;top: -20px;}
+.btn{ padding: .5rem 1rem;}
+}
+
+
+@media(max-width:335px){
+.page-wrapper .app-page .app-content .logobox{text-align: none;}
+.btn{ padding: .5rem ;}
+.page-wrapper .app-page .app-content .heading h1{font-size: 25px;}
+.page-wrapper .app-page .app-content .heading .btn{position: relative;bottom: -2px;}
+}

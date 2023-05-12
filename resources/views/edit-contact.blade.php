@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
+    <link rel="stylesheet" href="{{asset('css/responsive.css')}}">
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
     <title>Add Contact</title>
 </head>
@@ -31,7 +32,7 @@
                     <div class="form-heading">
                         <h1>Edit Contact</h1>
                     </div>
-                    <form action="{{url('update-contact/'.$contact->id)}}" method="PUT">
+                    <form action="{{url('update-contact/'.$contact->id)}}" method="POST">
                     @csrf
                         <input type="hidden" name="id" value ="{{$contact->id}}"> 
                         <div>

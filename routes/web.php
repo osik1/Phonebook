@@ -14,10 +14,6 @@ use Spatie\QueryBuilder\QueryBuilder;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-// Route::get('/', function () {
-//     return view('phonebook');
-// });
 Route::get('/', [ContactsController::class, 'index'])->name('phone.book');
 
 
@@ -27,6 +23,6 @@ Route::get('add-contact', function () {
 
 
 Route::get('edit/{id}', [ContactsController::class, 'editpage'])->name('edit.page');
-Route::put('update-contact/{id}', [ContactsController::class, 'update'])->name('update');
+Route::post('update-contact/{id}', [ContactsController::class, 'update'])->name('update');
 Route::post('save-contact', [ContactsController::class, 'store'])->name('store.contact');
 Route::get('del-contact/{id}', [ContactsController::class, 'destroy']);
