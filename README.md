@@ -24,5 +24,9 @@ If there is no app key in the **.env** file, generate one by running this comman
 
 
 ## Screenshots
+![Contacts page](https://github.com/osik1/Phonebook/tree/main/public/images/phonebook-contacts.png)
 
+![Add Contacts page](https://github.com/osik1/Phonebook/tree/main/public/images/phonebook-addcontacts.png)
+
+![Edit Contact page](https://github.com/osik1/Phonebook/tree/main/public/images/phonebook-editcontacts.png)
 
