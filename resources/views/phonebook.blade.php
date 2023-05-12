@@ -10,9 +10,13 @@
 </head>
 <body>
     <div class="page-wrapper">
+        <!-- illustration image -->
         <div class="illustration">
             <img src="{{asset('images/phonecall.png')}}" alt="">
         </div>
+        <!-- illustration image -->
+
+        <!-- App page -->
         <div class="app-page">
             <div class="app-content">
                 <div class="logobox">
@@ -25,12 +29,15 @@
                     <h1>Contacts</h1>
                     <a href="{{url('add-contact')}}"><button class="btn">+ Add Contact</button></a>
                 </div>
+
                 <!-- search form -->
-                <form action="{{ route('search') }}" method="GET" id="search-form">
+                <form action="{{ route('phone.book') }}" method="GET" id="search-form">
                 <div class="search-form">
-                    <input type="search" name="query" id="" class="text-input" placeholder="Search for contact by last name...">
+                    <input type="search" name="query" id="" value="{{old('query')}}" class="text-input" placeholder="Search for contact by last name...">
                 </div>
                 </form>
+                 <!-- search form -->
+
                 <!-- //alert message  -->
                 @if(session('success'))
                     <br>
@@ -39,34 +46,45 @@
                     </div>
                     <br>
                 @endif 
+                <!-- //alert message  -->
+
+                <!-- Listing contacts from database -->
                 <div class="contact-list">
                 @if (isset($contact))
                     @foreach ($contact as $contacts)
                         <div class="contact">
                             <div class="details">
                                 <div class="name">
-                                    <p>{{$contacts->first_name}} {{$contacts->last_name}}</p>
+                                    <a href="{{url('edit/'.$contacts->id)}}"><p>{{$contacts->first_name}} {{$contacts->last_name}}</p></a>
                                 </div>
                                 <div class="number">
                                 <p>{{$contacts->phone}}</p>
                                 </div>
                             </div>
                             <div class="delete-box">
-                                <a href="{{url('del-contact/'.$contacts->id)}}"><img src="{{asset('images/delete.png')}}" alt=""></a>
+                                <a href="{{url('del-contact/'.$contacts->id)}}"><img src="{{asset('images/delete.png')}}" alt="delete-btn"></a>
                             </div>
                         </div>
                     @endforeach
                    @endif
                 </div>
+                 <!-- Listing contacts from database -->
+
             </div>
             
         </div>
+        <!-- App page -->
+
     </div>
+
+    <!-- Script to handle the search submit form -->
     <script>
     document.getElementById('search-form').addEventListener('submit', function(event) {
         event.preventDefault(); // prevent the form from submitting normally
-        window.location.href = "{{ route('search') }}?filter[last_name]=" + encodeURIComponent(document.getElementsByName('query')[0].value);
+        window.location.href = "{{ route('phone.book') }}?filter[last_name]=" + encodeURIComponent(document.getElementsByName('query')[0].value);
     });
-</script>
+    </script>
+    <!-- Script to handle the search submit form -->
+
 </body>
 </html>

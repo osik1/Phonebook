@@ -17,18 +17,12 @@ class ContactsController extends Controller
     {
         //
         $contact = QueryBuilder::for(Contact::class)
-        ->allowedFilters(['first_name','last_name'])
+        ->allowedFilters(['last_name'])
         ->get();
         return View::make('phonebook', compact('contact'));
-    }
+    } 
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
+   
 
     /**
      * Store a newly created resource in storage.
@@ -47,20 +41,14 @@ class ContactsController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Edit contact form
      */
-    public function show(Contact $contact)
+    public function editpage($id)
     {
-        //
+        $contact = Contact::find($id);
+        return view('edit-contact', compact('contact'));
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Contact $contact)
-    {
-        //
-    }
+  
 
     /**
      * Update the specified resource in storage.
@@ -81,7 +69,7 @@ class ContactsController extends Controller
         $contact->last_name =  $input['last_name'];
         $contact->phone =  $input['phone'];
         $contact->save();
-        return redirect("/")->with('success', 'Contact updeated');
+        return redirect("/")->with('success', 'Contact updated');
     }
 
     /**
